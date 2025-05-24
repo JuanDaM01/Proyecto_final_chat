@@ -14,10 +14,13 @@ defmodule ChatAppWeb.Router do
     plug :accepts, ["json"]
   end
 
+  import Phoenix.LiveView.Router
+
   scope "/", ChatAppWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", LobbyLive
+    live "/chat/:room", ChatLive
   end
 
   # Other scopes may use custom stacks.

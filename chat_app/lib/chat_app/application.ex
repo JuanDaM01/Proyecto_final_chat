@@ -16,7 +16,8 @@ defmodule ChatApp.Application do
       # Start a worker by calling: ChatApp.Worker.start_link(arg)
       # {ChatApp.Worker, arg},
       # Start to serve requests, typically the last entry
-      ChatAppWeb.Endpoint
+      ChatAppWeb.Endpoint,
+      ChatAppWeb.Presence
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

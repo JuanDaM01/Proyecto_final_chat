@@ -7,6 +7,6 @@ defmodule ChatAppWeb.ErrorJSONTest do
 
   test "renders 500" do
     assert ChatAppWeb.ErrorJSON.render("500.json", %{}) ==
-            %{errors: %{detail: "Internal Server Error"}}
+             %{errors: %{detail: "Internal Server Error"}}
   end
 end

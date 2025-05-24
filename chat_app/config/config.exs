@@ -19,7 +19,7 @@ config :chat_app, ChatAppWeb.Endpoint,
     layout: false
   ],
   pubsub_server: ChatApp.PubSub,
-  live_view: [signing_salt: "TdtY8LsX"]
+  live_view: [signing_salt: "SrHJdj3r"]
 
 # Configures the mailer
 #
@@ -59,6 +59,9 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :chat_app,
+  ecto_repos: [ChatApp.Repo]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

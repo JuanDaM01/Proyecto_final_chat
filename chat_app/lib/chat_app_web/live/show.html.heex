@@ -1,0 +1,12 @@
+<h1 class="text-xl mb-4">Sala: <%= @room_name %></h1>
+
+<div id="messages" class="border p-4 h-64 overflow-y-scroll bg-white mb-4">
+<%= for msg <- @messages do %>
+    <p><%= msg %></p>
+<% end %>
+</div>
+
+. 
+<form phx-submit="send_message">
+<input type="text" name="message" value={@message} placeholder="Escribe un mensaje..." class="border p-2 rounded w-full"/>
+</form>

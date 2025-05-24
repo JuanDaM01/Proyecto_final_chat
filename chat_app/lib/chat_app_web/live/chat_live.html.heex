@@ -1,0 +1,45 @@
+<div class="max-w-2xl mx-auto mt-10 p-6 bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl shadow-lg">
+  <div class="mb-4 flex flex-wrap justify-between items-center">
+    <div class="font-semibold text-blue-700">
+      <span class="mr-2">👤 <%= @username %></span>
+      <span class="ml-4">#<%= @room %></span>
+    </div>
+    <div>
+      <span class="font-semibold text-gray-700">Conectados:</span>
+      <%= for user <- @users do %>
+        <span class="inline-block bg-blue-200 text-blue-900 rounded px-2 mx-1 text-xs font-semibold"><%= user %></span>
+      <% end %>
+    </div>
+  </div>
+  <div class="mb-4 flex space-x-2">
+    <button phx-click="show_history" class="bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded transition">Ver historial</button>
+    <form phx-submit="search_messages" class="flex space-x-1">
+      <input name="query" placeholder="Buscar mensaje..." class="border px-2 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-200" />
+      <button class="bg-blue-400 hover:bg-blue-600 text-white px-2 py-1 rounded transition">Buscar</button>
+    </form>
+    <button phx-click="leave_room" class="bg-red-400 hover:bg-red-600 text-white px-3 py-1 rounded ml-2 transition">Abandonar sala</button>
+  </div>
+  <div class="border rounded p-4 h-72 overflow-y-scroll bg-white mb-4 flex flex-col space-y-2 shadow-inner">
+    <%= for msg <- @messages do %>
+      <%= if msg.user == @username do %>
+        <div class="flex justify-end">
+          <div class="bg-green-200 rounded-lg px-4 py-2 max-w-xs text-right shadow">
+            <div class="text-xs text-gray-500 mb-1"><%= msg.time %></div>
+            <div><span class="font-semibold text-green-800">Yo:</span> <%= msg.text %></div>
+          </div>
+        </div>
+      <% else %>
+        <div class="flex justify-start">
+          <div class="bg-blue-100 border border-blue-200 rounded-lg px-4 py-2 max-w-xs text-left shadow">
+            <div class="text-xs text-gray-500 mb-1"><%= msg.time %></div>
+            <div><span class="font-semibold text-blue-800"><%= msg.user %>:</span> <%= msg.text %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <form phx-submit="send_message" class="flex space-x-2">
+    <input name="message" value={@message} phx-change="update_message" class="border border-blue-300 px-2 py-2 rounded flex-1 focus:outline-none focus:ring-2 focus:ring-blue-300" autocomplete="off"/>
+    <button class="bg-green-500 hover:bg-green-700 text-white px-6 py-2 rounded font-semibold transition">Enviar</button>
+  </form>
+</div>

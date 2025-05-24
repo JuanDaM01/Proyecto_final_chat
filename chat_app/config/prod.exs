@@ -18,3 +18,12 @@ config :logger, level: :info
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+
+config :chat_app, ChatAppWeb.Endpoint,
+  http: [ip: {0, 0, 0, 0}, port: String.to_integer(System.get_env("PORT") || "4000")],
+  https: [
+    port: 443,
+    cipher_suite: :strong,
+    keyfile: System.get_env("SOME_KEY_PATH"),
+    certfile: System.get_env("SOME_CERT_PATH")
+  ]
